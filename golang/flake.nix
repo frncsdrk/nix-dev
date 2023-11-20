@@ -2,24 +2,28 @@
   description = "Development environment";
 
   inputs = {
-    nixpkgs = { url = "github:NixOS/nixpkgs/nixpkgs-unstable"; };
-    flake-utils = { url = "github:numtide/flake-utils"; };
+    nixpkgs = {
+      url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    };
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
-      let
-        # inherit (nixpkgs.lib) optional;
-        pkgs = import nixpkgs { inherit system; };
-      in
-      {
-          devShell = pkgs.mkShell
-          {
-              buildInputs = with pkgs; [
-                go
-                golangci-lint
-            ];
+  outputs = { self, nixpkgs }:
+    let
+      supportedSystems = [ "x86_64-linux" ];
+      # Helper function to generate an attrset '{ x86_64-linux = f "x86_64-linux"; ... }'.
+      eachSystem = nixpkgs.lib.genAttrs supportedSystems;
+      # Nixpkgs instantiated for supported system types.
+      nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; });
+    in {
+      # Dev dependencies
+      devShells = eachSystem (system:
+        let 
+          pkgs = nixpkgsFor.${system};
+        in
+        {
+          default = pkgs.mkShell {
+            buildInputs = with pkgs; [ go gopls gotools go-tools ];
           };
-      }
-    );
+        });
+    };
 }
