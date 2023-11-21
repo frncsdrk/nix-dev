@@ -23,4 +23,6 @@ where `{TEMPLATE}` can be one of the following
 
 ## License
 
-The Unlicense
+[The Unlicense](License)
+
+[License]: ./LICENSE
