@@ -4,6 +4,8 @@ nix development templates
 
 ## Usage
 
+**flake**
+
 Initialize flake in new or existing project with
 
 ```sh
@@ -18,11 +20,19 @@ where `<template>` can be one of the following
 
 - golang
 - nodejs
+- shell
 - ziglang
 
 The flakes use the unstable channel and package versions provided by default whenever possible.
 Though it is relatively simple to modify that behaviour by using another nixpkgs channel or selecting
 packages for specific releases.
+
+**shell**
+
+The development shell is usable in two ways
+
+1. With [nix-direnv](https://github.com/nix-community/nix-direnv), you can enable `direnv` in the project directory with `direnv allow`
+2. With `nix develop` you can start the shell manually
 
 ## References
 
