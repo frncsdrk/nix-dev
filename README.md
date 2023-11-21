@@ -23,6 +23,4 @@ where `{TEMPLATE}` can be one of the following
 
 ## License
 
-[The Unlicense](License)
-
-[License]: ./LICENSE
+[The Unlicense](https://github.com/randomgoods/nix-dev/blob/main/LICENSE)
