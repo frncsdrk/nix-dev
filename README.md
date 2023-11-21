@@ -7,14 +7,22 @@ nix development templates
 Initialize flake in new or existing project with
 
 ```sh
-nix flake init --template github:frncsdrk/nix-dev#{TEMPLATE}
+# Initialize in existing project
+nix flake init --template github:randomgoods/nix-dev#<template>
+
+# Create a new project from template
+nix flake init --template github:randomgoods/nix-dev#<template> <directory>
 ```
 
-where `{TEMPLATE}` can be one of the following
+where `<template>` can be one of the following
 
 - golang
 - nodejs
 - ziglang
+
+The flakes use the unstable channel and package versions provided by default whenever possible.
+Though it is relatively simple to modify that behaviour by using another nixpkgs channel or selecting
+packages for specific releases.
 
 ## References
 
