@@ -18,6 +18,7 @@ nix flake init --template github:randomgoods/nix-dev#<template> <directory>
 
 where `<template>` can be one of the following
 
+- ansible
 - golang
 - nodejs
 - shell
