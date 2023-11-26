@@ -24,6 +24,9 @@
           default = pkgs.mkShell {
             buildInputs = with pkgs; [
               ansible
+              ansible-language-server
+              ansible-lint
+              python3
             ];
           };
         });
